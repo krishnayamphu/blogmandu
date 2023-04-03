@@ -35,6 +35,24 @@ public class UserDAO{
         }
         return users;
     }
+    public static boolean authUser(String username,String password) {
+        boolean status=false;
+        User user = new User();
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "SELECT * FROM users WHERE username=? AND password=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1,username);
+            ps.setString(2,password);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               status=true;
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
     public static void save(User user) {
         try {
             Connection cn = ConnectDB.connect();
