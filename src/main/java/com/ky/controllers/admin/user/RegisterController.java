@@ -1,4 +1,4 @@
-package com.ky.controllers.user;
+package com.ky.controllers.admin.user;
 
 import com.ky.dao.UserDAO;
 import com.ky.models.User;

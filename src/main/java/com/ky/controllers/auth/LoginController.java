@@ -25,15 +25,11 @@ public class LoginController extends HttpServlet {
         if (UserDAO.authUser(username,hash)) {
             HttpSession session=request.getSession();
             session.setAttribute("user",username);
-            System.out.println("welcome "+username);
-            //response.sendRedirect("welcome");
+            response.sendRedirect("admin/dashboard");
         } else {
             String msg = "Invalid Username or Password";
             request.setAttribute("err", msg);
             request.getRequestDispatcher("auth/login.jsp").include(request, response);
         }
-
     }
-
-
 }
