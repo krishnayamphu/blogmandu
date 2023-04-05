@@ -1,6 +1,7 @@
 package com.ky.dao;
 
 import com.ky.database.ConnectDB;
+import com.ky.models.Category;
 import com.ky.models.User;
 
 import java.sql.Connection;
@@ -10,60 +11,87 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoryDAO {
-    public static ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Category> getCategory() {
+        ArrayList<Category> categories = new ArrayList<>();
         try {
             Connection cn = ConnectDB.connect();
-            String sql = "SELECT * FROM users";
+            String sql = "SELECT * FROM category";
             PreparedStatement ps = cn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setName(rs.getString("name"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setContact(rs.getString("contact"));
-                user.setPassword(rs.getString("password"));
-                user.setProfilePic(rs.getString("profile_pic"));
-                user.setCreatedAt(rs.getString("created_at"));
-                user.setUpdatedAt(rs.getString("updated_at"));
-                users.add(user);
+                Category category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setSlug(rs.getString("slug"));
+                category.setDescription(rs.getString("description"));
+                category.setCreatedAt(rs.getString("created_at"));
+                category.setUpdatedAt(rs.getString("updated_at"));
+                categories.add(category);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return categories;
     }
-    public static boolean authUser(String username,String password) {
-        boolean status=false;
-        User user = new User();
+
+    public static Category getCategory(int id) {
+        Category category = null;
         try {
             Connection cn = ConnectDB.connect();
-            String sql = "SELECT * FROM users WHERE username=? AND password=?";
+            String sql = "SELECT * FROM category WHERE id=?";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1,username);
-            ps.setString(2,password);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               status=true;
+                category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                category.setSlug(rs.getString("slug"));
+                category.setDescription(rs.getString("description"));
+                category.setCreatedAt(rs.getString("created_at"));
+                category.setUpdatedAt(rs.getString("updated_at"));
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return status;
+        return category;
     }
-    public static void save(User user) {
+
+    public static void save(Category category) {
         try {
             Connection cn = ConnectDB.connect();
-            String sql = "INSERT INTO users (name,username,email,contact,password,profile_pic) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO category (name,slug,description) VALUES (?,?,?)";
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, user.getName());
-            ps.setString(2, user.getUsername());
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getContact());
-            ps.setString(5, user.getPassword());
-            ps.setString(6, user.getProfilePic());
+            ps.setString(1, category.getName());
+            ps.setString(2, category.getSlug());
+            ps.setString(3, category.getDescription());
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void update(Category category) {
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "UPDATE category SET name=?,slug=?,description=? WHERE  id=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, category.getName());
+            ps.setString(2, category.getSlug());
+            ps.setString(3, category.getDescription());
+            ps.setInt(4, category.getId());
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void delete(int id) {
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "DELETE FROM category WHERE  id=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
             ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -8,10 +8,10 @@
 <header>
     <div class="container">
         <nav>
-            <a href="">Dashboard</a>
+            <a href="${rootPath}/admin/dashboard">Dashboard</a>
             <a href="">Media</a>
             <a href="">Posts</a>
-            <a href="">Category</a>
+            <a href="${rootPath}/admin/category">Category</a>
             <a href="">Users</a>
             <form action="${rootPath}/logout" method="post">
                 <button>Logout</button>
@@ -22,7 +22,7 @@
 <main>
     <div class="container">
        <h4>Create new Category</h4>
-        <form action="">
+        <form action="category-create" method="post">
             <label>Name</label>
             <input type="text" name="name">
 
@@ -30,8 +30,8 @@
             <input type="text" name="slug">
 
             <label>Description</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            
+            <textarea name="description" id="" cols="30" rows="10"></textarea>
+            <button>Save</button>
         </form>
     </div>
 </main>

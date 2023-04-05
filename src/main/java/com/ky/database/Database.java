@@ -5,12 +5,12 @@ import com.ky.database.tables.UserTable;
 
 public class Database {
     public static void run(){
-        UserTable.create();
-        CategoryTable.create();
+//        UserTable.create();
+//        CategoryTable.create();
     }
 
     public static void destroy(){
-        UserTable.drop();
-        CategoryTable.drop();
+        //UserTable.drop();
+        //CategoryTable.drop();
     }
 }

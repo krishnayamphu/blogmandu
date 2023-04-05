@@ -15,7 +15,6 @@ public class MyContextListener implements ServletContextListener {
         ServletContext context=sce.getServletContext();
         String rootPath="/blogmandu";
         context.setAttribute("rootPath",rootPath);
-        System.out.println(rootPath);
     }
 
     @Override
