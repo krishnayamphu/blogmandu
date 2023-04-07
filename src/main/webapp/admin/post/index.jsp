@@ -3,33 +3,35 @@
 <html>
 <head>
     <link rel="stylesheet" href="${rootPath}/css/app.css">
-    <title>All Category</title>
+    <title>All Posts</title>
 </head>
 <body>
 <%@include file="/admin/inc/header.jsp"%>
 <main>
     <div class="container">
-        <h4>Categories</h4>
-        <a href="category-create">Create Category</a>
+        <h4>Posts</h4>
+        <a href="post-create">Create Post</a>
         <hr>
         <table>
             <tr>
                 <th>#ID</th>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Slug</th>
-                <th>Description</th>
+                <th>Category</th>
+                <th>Thumbnail</th>
                 <th>Action</th>
             </tr>
-            <c:forEach var="category" items="${categories}">
+            <c:forEach var="post" items="${posts}">
                 <tr>
-                    <td>${category.id}</td>
-                    <td>${category.name}</td>
-                    <td>${category.slug}</td>
-                    <td>${category.description}</td>
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td>${post.slug}</td>
+                    <td>${post.categoryId}</td>
+                    <td>${post.thumbImg}</td>
                     <td>
-                        <a href="category-edit?id=${category.id}">Edit</a>
-                        <form action="category" method="post">
-                            <input type="hidden" name="id" value="${category.id}">
+                        <a href="post-edit?id=${post.id}">Edit</a>
+                        <form action="post" method="post">
+                            <input type="hidden" name="id" value="${post.id}">
                             <button>Delete</button>
                         </form>
                     </td>

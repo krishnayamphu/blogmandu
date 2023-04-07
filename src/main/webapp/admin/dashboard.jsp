@@ -5,20 +5,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-<header>
-    <div class="container">
-        <nav>
-            <a href="${rootPath}/admin/dashboard">Dashboard</a>
-            <a href="">Media</a>
-            <a href="">Posts</a>
-            <a href="${rootPath}/admin/category">Category</a>
-            <a href="">Users</a>
-            <form action="${rootPath}/logout" method="post">
-                <button>Logout</button>
-            </form>
-        </nav>
-    </div>
-</header>
+<%@include file="/admin/inc/header.jsp"%>
 <main>
     <div class="container">
         <h1>Welcome to Dashboard</h1>
