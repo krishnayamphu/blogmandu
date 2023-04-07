@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="${rootPath}/css/app.css">
+    <%@include file="/admin/inc/head.jsp" %>
     <title>Create Category</title>
 </head>
 <body>
