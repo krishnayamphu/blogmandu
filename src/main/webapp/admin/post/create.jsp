@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="txtcategory" class="form-label">Category</label>
-                <select class="form-select" id="txtcategory">
+                <select name="cat_id" class="form-select" id="txtcategory">
                     <option selected>Open this select Category</option>
                     <c:forEach var="cat" items="${categories}">
                         <option value="${cat.id}">${cat.name}</option>
@@ -38,12 +38,12 @@
                 <label class="form-label">Thumbnail Image</label>
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon1" data-bs-toggle="modal" data-bs-target="#exampleModal" >Choose</button>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <input type="text" id="txtPath" class="form-control" name="thumb_img" placeholder="">
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -56,15 +56,9 @@
                                             <c:forEach var="file" items="${files}">
                                                 <div class="col">
                                                     <div class="card">
-                                                        <a href="${rootPath}/uploads/${file}">
-                                                            <img src="${rootPath}/uploads/${file}" class="card-img-top img-thumb" alt="${file}">
+                                                        <a href="#!">
+                                                            <img src="${rootPath}/uploads/${file}" class="card-img-top img-thumb" onclick="setImage('${file}')" alt="${file}" data-bs-dismiss="modal">
                                                         </a>
-                                                        <div class="card-body">
-                                                            <form action="media" method="post">
-                                                                <input type="hidden" name="image" value="${file}">
-                                                                <button class="btn btn-danger">Remove</button>
-                                                            </form>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </c:forEach>
@@ -91,5 +85,12 @@
 </footer>
 
 <%@include file="/admin/inc/script.jsp" %>
+<script>
+    function setImage(image){
+        let path=document.getElementById("txtPath");
+        path.value=image;
+        console.log(image);
+    }
+</script>
 </body>
 </html>

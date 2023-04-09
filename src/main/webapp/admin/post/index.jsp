@@ -27,7 +27,9 @@
                     <td>${post.title}</td>
                     <td>${post.slug}</td>
                     <td>${post.categoryId}</td>
-                    <td>${post.thumbImg}</td>
+                    <td>
+                        <img src="${rootPath}/uploads/${post.thumbImg}" class="img-thumbnail img-thumb-100" >
+                    </td>
                     <td>
                         <a href="post-edit?id=${post.id}">Edit</a>
                         <form action="post" method="post">
