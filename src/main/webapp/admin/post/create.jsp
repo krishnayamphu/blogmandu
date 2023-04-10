@@ -6,31 +6,27 @@
     <title>Create New Post</title>
 </head>
 <body>
-<%@include file="/admin/inc/header.jsp"%>
+<%@include file="/admin/inc/header.jsp" %>
 <main>
     <div class="container">
-       <h4>Create new Post</h4>
+        <h4>Create new Post</h4>
         <form action="post-create" method="post">
             <div class="mb-3">
-                <label for="txttitle" class="form-label">Title</label>
-                <input type="text" class="form-control" id="txttitle" name="title" required>
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" onfocusout="convertSlug()" required>
             </div>
             <div class="mb-3">
-                <label for="txtslug" class="form-label">Slug</label>
-                <input type="text" class="form-control" id="txtslug" name="slug" required>
+                <label class="form-label">Slug</label>
+                <input type="text" class="form-control" id="slug" name="slug" required>
             </div>
             <div class="mb-3">
-                <label for="txtcontent" class="form-label">Content</label>
-                <textarea   id="editor" class="form-control" id="txtcontent" rows="10" name="content"></textarea>
+                <label class="form-label">Content</label>
+                <textarea id="editor" class="form-control" rows="30" name="content"></textarea>
             </div>
-            <div></div>
-
-
-
             <div class="mb-3">
-                <label for="txtcategory" class="form-label">Category</label>
-                <select name="cat_id" class="form-select" id="txtcategory">
-                    <option selected>Open this select Category</option>
+                <label class="form-label">Category</label>
+                <select name="cat_id" class="form-select" required>
+                    <option value="" selected>Select Category</option>
                     <c:forEach var="cat" items="${categories}">
                         <option value="${cat.id}">${cat.name}</option>
                     </c:forEach>
@@ -40,17 +36,21 @@
             <div class="mb-3">
                 <label class="form-label">Thumbnail Image</label>
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" data-bs-toggle="modal" data-bs-target="#exampleModal" >Choose</button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Choose
+                    </button>
                     <input type="text" id="txtPath" class="form-control" name="thumb_img" placeholder="">
                 </div>
 
                 <!-- Modal -->
-                <div class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <c:choose>
@@ -60,7 +60,10 @@
                                                 <div class="col">
                                                     <div class="card">
                                                         <a href="#!">
-                                                            <img src="${rootPath}/uploads/${file}" class="card-img-top img-thumb" onclick="setImage('${file}')" alt="${file}" data-bs-dismiss="modal">
+                                                            <img src="${rootPath}/uploads/${file}"
+                                                                 class="card-img-top img-thumb"
+                                                                 onclick="setImage('${file}')" alt="${file}"
+                                                                 data-bs-dismiss="modal">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -77,7 +80,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
@@ -91,15 +93,20 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 
-    function setImage(image){
-        let path=document.getElementById("txtPath");
-        path.value=image;
+    function setImage(image) {
+        let path = document.getElementById("txtPath");
+        path.value = image;
         console.log(image);
+    }
+    function convertSlug() {
+        var title = document.getElementById("title").value;
+        var slug = title.trim().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+        document.getElementById("slug").value = slug;
     }
 </script>
 </body>

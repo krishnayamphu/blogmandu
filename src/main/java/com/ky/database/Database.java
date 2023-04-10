@@ -8,12 +8,12 @@ public class Database {
     public static void run(){
 //        UserTable.create();
 //        CategoryTable.create();
-        PostTable.create();
+       // PostTable.create();
     }
 
     public static void destroy(){
         //UserTable.drop();
         //CategoryTable.drop();
-        PostTable.drop();
+        //PostTable.drop();
     }
 }

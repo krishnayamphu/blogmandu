@@ -6,42 +6,45 @@
     <title>All Posts</title>
 </head>
 <body>
-<%@include file="/admin/inc/header.jsp"%>
+<%@include file="/admin/inc/header.jsp" %>
 <main>
     <div class="container">
         <h4>Posts</h4>
-        <a href="post-create">Create Post</a>
+        <a class="btn btn-primary" href="post-create">Create Post</a>
         <hr>
-        <table>
+        <table class="table">
+            <thead>
             <tr>
                 <th>#ID</th>
                 <th>Title</th>
                 <th>Slug</th>
                 <th>Category</th>
-                <th>Thumbnail</th>
                 <th>Action</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="post" items="${posts}">
                 <tr>
-                    <td>${post.id}</td>
+                    <th>${post.id}</th>
                     <td>${post.title}</td>
                     <td>${post.slug}</td>
                     <td>${post.categoryId}</td>
                     <td>
-                        <img src="${rootPath}/uploads/${post.thumbImg}" class="img-thumbnail img-thumb-100" >
-                    </td>
-                    <td>
-                        <a href="post-edit?id=${post.id}">Edit</a>
-                        <form action="post" method="post">
-                            <input type="hidden" name="id" value="${post.id}">
-                            <button>Delete</button>
-                        </form>
-                    </td>
-                    <td>
-                            ${post.content}
+                        <div class="d-flex">
+                            <a class="btn btn-info me-2" href="post-edit?id=${post.id}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <form class="mb-0" action="post" method="post">
+                                <input type="hidden" name="id" value="${post.id}">
+                                <button class="btn btn-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
 
     </div>
