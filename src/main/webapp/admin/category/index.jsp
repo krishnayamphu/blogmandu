@@ -6,37 +6,46 @@
     <title>All Category</title>
 </head>
 <body>
-<%@include file="/admin/inc/header.jsp"%>
+<%@include file="/admin/inc/header.jsp" %>
 <main>
     <div class="container">
         <h4>Categories</h4>
-        <a href="category-create">Create Category</a>
+        <a class="btn btn-primary" href="category-create">Create Category</a>
         <hr>
-        <table>
+        <table class="table">
+            <thead>
             <tr>
-                <th>#ID</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>Description</th>
-                <th>Action</th>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="category" items="${categories}">
                 <tr>
-                    <td>${category.id}</td>
+                    <th scope="row">${category.id}</th>
                     <td>${category.name}</td>
                     <td>${category.slug}</td>
                     <td>${category.description}</td>
                     <td>
-                        <a href="category-edit?id=${category.id}">Edit</a>
-                        <form action="category" method="post">
-                            <input type="hidden" name="id" value="${category.id}">
-                            <button>Delete</button>
-                        </form>
+                        <div class="d-flex">
+                            <a class="btn btn-info me-2" href="category-edit?id=${category.id}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <form class="mb-0" action="category" method="post">
+                                <input type="hidden" name="id" value="${category.id}">
+                                <button class="btn btn-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
-
     </div>
 </main>
 <footer>

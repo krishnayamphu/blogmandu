@@ -5,20 +5,27 @@
     <title>Create Category</title>
 </head>
 <body>
-<%@include file="/admin/inc/header.jsp"%>
+<%@include file="/admin/inc/header.jsp" %>
 <main>
     <div class="container">
-       <h4>Create new Category</h4>
+        <h4>Create new Category</h4>
         <form action="category-create" method="post">
-            <label>Name</label>
-            <input type="text" name="name">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
 
-            <label>Slug</label>
-            <input type="text" name="slug">
+            <div class="mb-3">
+                <label class="form-label">Slug</label>
+                <input type="text" class="form-control" name="slug" required>
+            </div>
 
-            <label>Description</label>
-            <textarea name="description" id="" cols="30" rows="10"></textarea>
-            <button>Save</button>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="10"></textarea>
+            </div>
+
+            <button class="btn btn-primary">Save</button>
         </form>
     </div>
 </main>

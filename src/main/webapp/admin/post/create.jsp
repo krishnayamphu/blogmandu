@@ -9,7 +9,7 @@
 <%@include file="/admin/inc/header.jsp"%>
 <main>
     <div class="container">
-       <h4>Create new Category</h4>
+       <h4>Create new Post</h4>
         <form action="post-create" method="post">
             <div class="mb-3">
                 <label for="txttitle" class="form-label">Title</label>
@@ -21,8 +21,11 @@
             </div>
             <div class="mb-3">
                 <label for="txtcontent" class="form-label">Content</label>
-                <textarea class="form-control" id="txtcontent" rows="10" name="content"></textarea>
+                <textarea   id="editor" class="form-control" id="txtcontent" rows="10" name="content"></textarea>
             </div>
+            <div></div>
+
+
 
             <div class="mb-3">
                 <label for="txtcategory" class="form-label">Category</label>
@@ -85,7 +88,14 @@
 </footer>
 
 <%@include file="/admin/inc/script.jsp" %>
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
     function setImage(image){
         let path=document.getElementById("txtPath");
         path.value=image;

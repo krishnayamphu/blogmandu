@@ -11,15 +11,22 @@
        <h4>Category Details</h4>
         <form action="category-edit" method="post">
             <input type="hidden" name="id" value="${category.id}">
-            <label>Name</label>
-            <input type="text" name="name" value="${category.name}" required>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" value="${category.name}" required>
+            </div>
 
-            <label>Slug</label>
-            <input type="text" name="slug" value="${category.slug}" required>
+            <div class="mb-3">
+                <label class="form-label">Slug</label>
+                <input type="text" class="form-control" name="slug" value="${category.slug}" required>
+            </div>
 
-            <label>Description</label>
-            <textarea name="description" id="" cols="30" rows="10">${category.description}</textarea>
-            <button>Update</button>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="10">${category.description}</textarea>
+            </div>
+
+            <button class="btn btn-primary">Update</button>
         </form>
     </div>
 </main>

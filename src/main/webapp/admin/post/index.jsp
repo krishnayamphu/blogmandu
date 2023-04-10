@@ -37,6 +37,9 @@
                             <button>Delete</button>
                         </form>
                     </td>
+                    <td>
+                            ${post.content}
+                    </td>
                 </tr>
             </c:forEach>
         </table>
