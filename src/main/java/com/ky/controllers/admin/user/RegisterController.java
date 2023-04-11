@@ -36,6 +36,7 @@ public class RegisterController extends HttpServlet {
             user.setProfilePic("");
             UserDAO.save(user);
             System.out.println("user registered successfully");
+            response.sendRedirect("login");
         }else{
             String err="Confirmed password do not match";
             request.setAttribute("err",err);

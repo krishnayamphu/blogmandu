@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthFilter", urlPatterns = {"/admin/dashboard"})
+@WebFilter(filterName = "AuthFilter", urlPatterns = {"/admin/*"})
 public class AuthFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
