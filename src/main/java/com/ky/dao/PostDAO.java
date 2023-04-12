@@ -35,6 +35,30 @@ public class PostDAO {
         }
         return posts;
     }
+    public static Post getPosts(String slug) {
+        Post post = new Post();
+        try {
+            Connection cn = ConnectDB.connect();
+            String sql = "SELECT * FROM posts WHERE slug=?";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1,slug);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setSlug(rs.getString("slug"));
+                post.setContent(rs.getString("content"));
+                post.setThumbImg(rs.getString("thumb_img"));
+                post.setCategoryId(rs.getInt("category_id"));
+                post.setCreatedAt(rs.getString("created_at"));
+                post.setUpdatedAt(rs.getString("updated_at"));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return post;
+    }
 
     public static Category getCategory(int id) {
         Category category = null;
