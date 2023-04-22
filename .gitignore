@@ -27,3 +27,4 @@ out/*
 /nbdist/
 /.nb-gradle/
 build/
+/bin/
