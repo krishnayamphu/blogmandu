@@ -34,7 +34,7 @@
                             <a class="btn btn-info me-2" href="post-edit?id=${post.id}">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
-                            <form class="mb-0" action="post" method="post">
+                            <form class="mb-0" action="posts" method="post">
                                 <input type="hidden" name="id" value="${post.id}">
                                 <button class="btn btn-danger">
                                     <i class="fa-regular fa-trash-can"></i>
@@ -50,9 +50,7 @@
     </div>
 </main>
 <footer>
-
 </footer>
-
 
 </body>
 </html>
