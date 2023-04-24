@@ -1,0 +1,7 @@
+.post-list img{
+    height: 170px;
+    object-fit: cover;
+}
+.post-list a{
+    text-decoration: none;
+}

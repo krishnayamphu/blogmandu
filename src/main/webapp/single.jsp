@@ -10,8 +10,8 @@
 <%@include file="header.jsp"%>
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-9 bg-info">
+    <div class="row py-5">
+      <div class="col-8">
         <div class="card">
           <img src="${rootPath}/uploads/${post.thumbImg}" class="card-img-top" alt="...">
           <div class="card-body">
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3 bg-warning">sdfdasf</div>
+      <div class="col-4 bg-warning">sdfdasf</div>
     </div>
   </div>
 </main>
